@@ -17,17 +17,19 @@ class render(): # rendering functions class
     def ui(self):   # draw buttons
         primaryActions(screen)  # draw primary buttons
 
-    def particle_test(self):
-        particles = []
-        screen.fill((0,0,0))
-        #mx, my = pg.mouse.get_pos()
-        particles.append([[lp.mx(), lp.my()], [rng.randint(0, 20) / 10 - 1, -2], rng.randint(4, 6)])
+    particles = []
 
-        for particle in particles:
+    def particle_test(self):
+        
+        screen.fill((0,0,0))
+        mx, my = pg.mouse.get_pos()
+        self.particles.append([[mx, my], [rng.randint(0, 20) / 10 - 1, -2], rng.randint(4, 6)])
+
+        for particle in self.particles:
             particle[0][0] += particle[1][0]
             particle[0][1] += particle[1][1]
-            particle[2] -= 0.1
-            particle[1][1] += 0.1
-            pg.draw.circle(screen, (255, 255, 255), [int(particle[0][0]), int(particle[0][1])], int(particle[2]))
+            particle[2] -= 0.01
+            particle[1][1] += 0.05
+            pg.draw.circle(screen, (rng.randint(100, 255), rng.randint(100, 255), rng.randint(100, 255)), [int(particle[0][0]), int(particle[0][1])], int(particle[2]))
             if particle[2] <= 0:
-                particles.remove(particle)
+                self.particles.remove(particle)

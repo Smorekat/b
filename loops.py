@@ -6,7 +6,7 @@ mainClock = pg.time.Clock()
 def display():
     #pg.display.flip()
     pg.display.update()
-    mainClock.tick(200)
+    mainClock.tick(60)
 
 def loop():
     #ren.screen.fill((0,0,0))
