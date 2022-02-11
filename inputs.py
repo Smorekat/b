@@ -26,6 +26,9 @@ class check():
                 elif event.type == pg.MOUSEBUTTONDOWN:
                     print(pg.mouse.get_pos())
 
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_SPACE:
+                    p.player.shoot()
             """
             if event.type == pg.:
                 if event.key == pg.K_w:
@@ -64,8 +67,11 @@ class check():
             p.player.dash_right()
 
         else:
-          p.dashing = [0.0, 0.0]
-          ren.num_dash_particles = 0
+            #p.velocity = [0.0, 0.0]
+            p.dashing = [0.0, 0.0]
+            ren.num_dash_particles = 0
+
+        
         
         
         

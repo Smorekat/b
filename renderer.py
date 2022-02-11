@@ -1,9 +1,10 @@
 from buttons import *
 import pygame as pg
 import random as rng
-import loops as lp
+#import loops as lp
 from pygame.locals import DOUBLEBUF
 import player as p
+#import bullets as b
 
 size = width, height = (500, 500)   # set window/screen dimensions
 screen = pg.display.set_mode(size,DOUBLEBUF,32)  # make screen
@@ -18,6 +19,8 @@ class render(): # rendering functions class
         self.ui()   # draw ui (buttons)
         #self.particle_test()
         self.show_player()
+
+        
 
     def ui(self):   # draw buttons
         primaryActions(screen)  # draw primary buttons

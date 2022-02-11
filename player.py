@@ -1,34 +1,45 @@
 
 #import renderer as ren
 #import math
+import bullets as b
 
 dashing = [0.0, 0.0]
 # player array:
 # [pos [x, y], health]
-user = [[0,0], 100]
+health = 100
+user = [[0,0], health]
 user_size = [10, 20]
 user_speed = 2
 user_middle = lambda: [user[0][0] + user_size[0] / 2, user[0][1] + user_size[1] / 2]
 stamina = 100
-health = 100
+velocity = [0.0, 0.0]
+
 class player():
     def __init__(self):
         pass
 
     def move_up(user=user):
+        global velocity
         user[0][1] -= user_speed
+        velocity = [0.0, 1.0]
         #print("move_up")
 
     def move_down(user=user):
+        global velocity
         user[0][1] += user_speed
+        velocity = [0.0, -1.0]
         #print("move_down")
 
     def move_left(user=user):
+        global velocity
         user[0][0] -= user_speed
+        velocity = [-1.0, 0.0]
         #print("move_left")
     
     def move_right(user=user):
+        global velocity
         user[0][0] += user_speed
+        velocity = [1.0, 0.0]
         #print("move_right")
 
     #sinspeed = 0
@@ -57,6 +68,10 @@ class player():
             dashing = [-1.0, 0.0]
             user[0][0] -= user_speed * 1.5
 
+
+
+    def shoot():
+        b.shoot()
         #else: stamina_refill()
 
 stamina_time = 0
