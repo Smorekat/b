@@ -19,9 +19,16 @@ class primaryActions(): # draw primary buttons
 class statistics():
     def __init__(self, screen):
         self.stamina_bar(screen)
+        self.health_bar(screen)
 
     def stamina_bar(self, screen):
         pg.draw.rect(screen, (150, 100, 0), [[350, 450], [110, 20]], 5)
 
         #print("st" + str(p.stamina))
-        pg.draw.rect(screen, (255, 0, 100), [[355,455], [p.stamina, 10]], 0)
+        pg.draw.rect(screen, (0, 0, 255), [[355,455], [p.stamina, 10]], 0)
+
+    def health_bar(self, screen):
+        pg.draw.rect(screen, (150, 100, 0), [[350, 430], [110, 20]], 5)
+
+        #print("st" + str(p.stamina))
+        pg.draw.rect(screen, (255, 0, 20), [[355,435], [p.health, 10]], 0)

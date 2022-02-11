@@ -5,8 +5,8 @@ import player as p
 mainClock = pg.time.Clock()
 
 def display():
-    pg.display.flip()
     pg.display.update()
+    pg.display.flip()
     mainClock.tick(60)
 
 def loop():
