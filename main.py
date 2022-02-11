@@ -12,8 +12,8 @@ def main():     # put it all together
 
     
     while (ren.running):    # while game is running
-        inp.check()     # check for any inputs
         loop()      # draw on screen
+        inp.check()     # check for any inputs
         display()   # render and display window
 
 

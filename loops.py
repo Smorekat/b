@@ -4,13 +4,15 @@ import pygame as pg
 mainClock = pg.time.Clock()
 
 def display():
-    #pg.display.flip()
+    pg.display.flip()
     pg.display.update()
     mainClock.tick(60)
 
 def loop():
-    #ren.screen.fill((0,0,0))
+    ren.screen.fill((0,0,0))
     ren.render()
+    ren.do_particles()
+    #ren.particle_dash()
 
 def mx():
     return pg.mouse.get_pos()[0]
