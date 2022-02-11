@@ -21,7 +21,7 @@ class render(): # rendering functions class
 
     def ui(self):   # draw buttons
         primaryActions(screen)  # draw primary buttons
-
+        statistics(screen)
     #particles = []
 
     def show_player(self):
@@ -30,20 +30,23 @@ class render(): # rendering functions class
                         [p.user[0][0], p.user[0][1],
                          p.user_size[0], p.user_size[1]])#p.usersize[0], p.user[0][1] + p.usersize[1]])
 
-dashing = [0.0, 0.0]
+#dashing = [0.0, 0.0]
 particles = []
 num_dash_particles = 0
 
-def particle_dash(user=p.user):
-  global dashing, num_dash_particles
-  print(dashing)
+def particle_dash():
+  global num_dash_particles
+  #print(dashing)
                                               #[0][0]startx    [0][1]starty   [1][0]velocityx          [1][1]velocityy       [2]size
-  if dashing != [0.0, 0.0]:
-    if num_dash_particles <= 10:
-      particles.append([[p.user_middle()[0], p.user_middle()[1]], [rng.randint(0, 20) / 7 - 1, -2], rng.randint(4, 6)])
-      num_dash_particles += 1
+  if p.dashing != [0.0, 0.0]:
+    p.lower_stamina()
+
+    print(p.stamina)
+    if num_dash_particles <= 5:
+        particles.append([[p.user_middle()[0], p.user_middle()[1]], [rng.randint(0, 20) / 7 - 1, -2], rng.randint(4, 6)])
+        num_dash_particles += 1
     else: 
-      pass
+        pass
       #dashing = [0.0, 0.0]
   for particle in particles:
     particle[0][0] += particle[1][0]  # x + velocity
@@ -52,8 +55,8 @@ def particle_dash(user=p.user):
     particle[1][1] += 0.1   # y velocity
     def delta_particle(pos):
       delta_speed = 0.1
-      delta = -delta_speed if dashing[pos] > 0.0 else 0
-      delta = delta_speed if dashing[pos] < 0.0 else 0
+      delta = -delta_speed if p.dashing[pos] > 0.0 else 0
+      delta = delta_speed if p.dashing[pos] < 0.0 else 0
       return delta
     particle[1][0] -= delta_particle(0)   # x velocity
     particle[1][0] -= delta_particle(1)   # x velocity

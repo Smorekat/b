@@ -45,26 +45,26 @@ class check():
        
         if pressed_keys[pg.K_w]:
             p.player.move_up()
-            print("w")
+            #print("w")
         if pressed_keys[pg.K_s]:
             p.player.move_down()
-            print("s")
+            #print("s")
         if pressed_keys[pg.K_a]:
             p.player.move_left()
-            print("a")
+            #print("a")
         if pressed_keys[pg.K_d]:
             p.player.move_right()
-            print("d")
+            #print("d")
         
         if pressed_keys[pg.K_LSHIFT]:
           if pressed_keys[pg.K_a]:
             p.player.dash_left()
-            print("a")
+            #print("a")
           if pressed_keys[pg.K_d]:
             p.player.dash_right()
 
         else:
-          ren.dashing = [0.0, 0.0]
+          p.dashing = [0.0, 0.0]
           ren.num_dash_particles = 0
         
         

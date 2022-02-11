@@ -1,5 +1,5 @@
 import pygame as pg
-
+import player as p
 
 class primaryActions(): # draw primary buttons
     def __init__(self, screen): # draw buttons
@@ -15,3 +15,13 @@ class primaryActions(): # draw primary buttons
 
         pg.draw.rect(screen, (0, 0, 255),   # draw button frame
                 [self.attack[0], self.attacklength]) # on screen, color Blue, x1;y1;lx;ly
+
+class statistics():
+    def __init__(self, screen):
+        self.stamina_bar(screen)
+
+    def stamina_bar(self, screen):
+        pg.draw.rect(screen, (150, 100, 0), [[350, 450], [110, 20]], 5)
+
+        #print("st" + str(p.stamina))
+        pg.draw.rect(screen, (255, 0, 100), [[355,455], [p.stamina, 10]], 0)
