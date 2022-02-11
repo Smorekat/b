@@ -53,20 +53,20 @@ class check():
             p.player.move_left()
             print("a")
         if pressed_keys[pg.K_d]:
-            
-            if pressed_keys[pg.K_LSHIFT] and pressed_keys[pg.K_d]:
-                #dashRight = True
-                p.player.dash_right()
-                print("dash d")
-            else:
-                p.player.move_right()
-                print("d")
-                ren.dashing = [0.0, 0.0]
+            p.player.move_right()
+            print("d")
         
-        else:
-            
-            ren.dashing = [0.0, 0.0]
+        if pressed_keys[pg.K_LSHIFT]:
+          if pressed_keys[pg.K_a]:
+            p.player.dash_left()
+            print("a")
+          if pressed_keys[pg.K_d]:
+            p.player.dash_right()
 
+        else:
+          ren.dashing = [0.0, 0.0]
+          ren.num_dash_particles = 0
+        
         
         
 
