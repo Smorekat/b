@@ -42,8 +42,9 @@ class check():
 
                 if event.key == pg.K_c:
                     b.bursting = True
+                    b.set_delay()
                     p.player.burst()
-                    b.bursting = False
+                    #b.bursting = False
 
             if event.type == pg.KEYUP:
                 if event.key == pg.K_d or event.key == pg.K_a:
@@ -51,22 +52,6 @@ class check():
                 if event.key == pg.K_w or event.key == pg.K_s:
                     p.velocity[0] = 0.0
             
-            
-            """
-            if event.type == pg.:
-                if event.key == pg.K_w:
-                    p.player.move_up()
-                    print("w")
-                elif event.key == pg.K_s:
-                    p.player.move_down()
-                    print("s")
-                elif event.key == pg.K_a:
-                    p.player.move_left()
-                    print("a")
-                elif event.key == pg.K_d:
-                    p.player.move_right()
-                    print("d")
-            """
         pressed_keys = pg.key.get_pressed()
         if pressed_keys[pg.K_w]:
             p.player.move_up()
