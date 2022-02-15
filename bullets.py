@@ -16,14 +16,15 @@ burst_delay = 0.0
 
 def set_delay():
     global clock, burst_delay
-    clock = pg.time.get_ticks()     # first use of pygame clock instead of loop + variable counter\
-    burst_delay = clock + 100
+    #clock = pg.time.get_ticks()     # first use of pygame clock instead of loop + variable counter\
+    burst_delay = clock + 50
 
 def burst():
     global burst_shots, burst_delay, clock, bursting
-    #set_delay(
+    set_delay()
+    print("bursted")
     
-    print(burst_delay, clock, bursting, burst_shots)
+    #print(burst_delay, clock, bursting, burst_shots)
 
 
 
@@ -31,18 +32,22 @@ def burst():
 def do_burst():
     global bursting, burst_shots
     burst_shots += 1
-    if burst_shots < 3:
+    if burst_shots < 5:
         shoot()
-        burst_shots = 0
+    
+    elif burst_shots > 5:
         bursting = False
+        burst_shots = 0
+        
             
 
 def shoot_logic():
-    global burst_delay, clock, bursting
+    global burst_delay, clock, bursting, burst_shots
     clock = pg.time.get_ticks()
-    if burst_delay > clock: #and bursting == True:
-        print("burs")
+    if clock > burst_delay and bursting == True:
+        print(burst_delay, clock, bursting, burst_shots)
         do_burst()
+        set_delay()
 
 
 
