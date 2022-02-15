@@ -17,6 +17,8 @@ def loop():
     b.move_bullet(ren.screen)
     #p.stamina_refill()
     p.stamina_delay()
+    b.shoot_logic()
+    #p.player.shoot_loop()
     #ren.particle_dash()
 
 

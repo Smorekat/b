@@ -4,6 +4,7 @@ import player as p
 class primaryActions(): # draw primary buttons
     def __init__(self, screen): # draw buttons
         self.btn_attack(screen) # draw attack button
+        #self.fps(screen)
     
     # first button coordinates
     attack = [[50,50], []]
@@ -15,6 +16,14 @@ class primaryActions(): # draw primary buttons
 
         pg.draw.rect(screen, (0, 0, 255),   # draw button frame
                 [self.attack[0], self.attacklength]) # on screen, color Blue, x1;y1;lx;ly
+
+    def fps(self, screen):
+        #sysfont = pg.font.get_default_font()
+
+        font = pg.font.SysFont(None, 48)
+        clock = pg.time.Clock()
+        img = font.render(str(clock.get_fps()), True, (255, 255, 255))
+        screen.blit(img, (20, 20))
 
 class statistics():
     def __init__(self, screen):

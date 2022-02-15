@@ -4,6 +4,7 @@ import random as rng
 #import loops as lp
 from pygame.locals import DOUBLEBUF
 import player as p
+import enemy as e
 #import bullets as b
 
 size = width, height = (500, 500)   # set window/screen dimensions
@@ -19,6 +20,7 @@ class render(): # rendering functions class
         self.ui()   # draw ui (buttons)
         #self.particle_test()
         self.show_player()
+        e.enemy_health_logic(screen)
 
         
 
@@ -46,7 +48,7 @@ def particle_dash():
 
     print(p.stamina)
     if num_dash_particles <= 5:
-        particles.append([[p.user_middle()[0], p.user_middle()[1]], [rng.randint(0, 20) / 7 - 1, -2], rng.randint(4, 6)])
+        particles.append([[p.user_middle()[0], p.user_middle()[1]], [rng.randint(0, 20) / 7 - 1, -2], rng.randint(4, 6), [rng.randint(100, 255), rng.randint(100, 255), rng.randint(100, 255)]])
         num_dash_particles += 1
     else: 
         pass
@@ -64,8 +66,7 @@ def particle_dash():
     particle[1][0] -= delta_particle(0)   # x velocity
     particle[1][0] -= delta_particle(1)   # x velocity
     
-    
-    pg.draw.circle(screen, (rng.randint(100, 255), rng.randint(100, 255), rng.randint(100, 255)), [int(particle[0][0]), int(particle[0][1])], int(particle[2]))
+    pg.draw.circle(screen, (particle[3]), [int(particle[0][0]), int(particle[0][1])], int(particle[2]))
     if particle[2] <= 0:
       particles.remove(particle)
   #dashing = [0.0, 0.0]

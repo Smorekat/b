@@ -2,6 +2,8 @@
 #import renderer as ren
 #import math
 import bullets as b
+import pygame as pg # only 1 / once
+
 
 dashing = [0.0, 0.0]
 # player array:
@@ -21,25 +23,25 @@ class player():
     def move_up(user=user):
         global velocity
         user[0][1] -= user_speed
-        velocity = [0.0, 1.0]
+        velocity[1] = 1.0 # may be problematic ------
         #print("move_up")
 
     def move_down(user=user):
         global velocity
         user[0][1] += user_speed
-        velocity = [0.0, -1.0]
+        velocity[1] = -1.0
         #print("move_down")
 
     def move_left(user=user):
         global velocity
         user[0][0] -= user_speed
-        velocity = [-1.0, 0.0]
+        velocity[0] = -1.0
         #print("move_left")
     
     def move_right(user=user):
         global velocity
         user[0][0] += user_speed
-        velocity = [1.0, 0.0]
+        velocity[0] = 1.0
         #print("move_right")
 
     #sinspeed = 0
@@ -72,6 +74,12 @@ class player():
 
     def shoot():
         b.shoot()
+
+    def burst():
+        b.burst()
+
+    #def shoot_loop():
+        #b.burst_counter()
         #else: stamina_refill()
 
 stamina_time = 0

@@ -1,3 +1,4 @@
+
 from turtle import Screen
 from buttons import primaryActions
 from loops import *
@@ -7,12 +8,17 @@ from loops import mx, my, loop, display
 import renderer as ren
 import sys
 import player as p
+import enemy as e
+
+#old_velocity = [1.0, 0.0]
 
 class check():
     def __init__(self) -> None:
         self.collision_check()
 
     def collision_check(self):
+        #global old_velocity
+        #if p.velocity != [0.0, 0.0]: old_velocity = p.velocity
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 ren.running = False
@@ -29,6 +35,23 @@ class check():
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
                     p.player.shoot()
+
+                # TEMP ------------
+                if event.key == pg.K_SEMICOLON:
+                    e.spawn()
+
+                if event.key == pg.K_c:
+                    b.bursting = True
+                    p.player.burst()
+                    b.bursting = False
+
+            if event.type == pg.KEYUP:
+                if event.key == pg.K_d or event.key == pg.K_a:
+                    p.velocity[1] = 0.0
+                if event.key == pg.K_w or event.key == pg.K_s:
+                    p.velocity[0] = 0.0
+            
+            
             """
             if event.type == pg.:
                 if event.key == pg.K_w:
@@ -45,7 +68,6 @@ class check():
                     print("d")
             """
         pressed_keys = pg.key.get_pressed()
-       
         if pressed_keys[pg.K_w]:
             p.player.move_up()
             #print("w")
@@ -65,13 +87,14 @@ class check():
             #print("a")
           if pressed_keys[pg.K_d]:
             p.player.dash_right()
+        
 
         else:
             #p.velocity = [0.0, 0.0]
             p.dashing = [0.0, 0.0]
             ren.num_dash_particles = 0
 
-        
+
         
         
         
