@@ -26,5 +26,5 @@ def enemy_health_logic(screen):
         red = 255 - enemy[1] if red >= 0 and red <= 255 else 0
         green = 0 + enemy[1] if green <= 255 and green >= 0 else 0
         # print(red, green)
-        pg.draw.rect(screen, (red, green, 20), [enemy[0][0], enemy[0][1], enemy_size[0], enemy_size[1]], 0)
+        # pg.draw.rect(screen, (red, green, 20), [enemy[0][0], enemy[0][1], enemy_size[0], enemy_size[1]], 0)
         

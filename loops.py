@@ -15,6 +15,7 @@ def loop():
     ren.render()
     ren.do_particles()
     b.move_bullet(ren.screen)
+    
     #p.stamina_refill()
     p.stamina_delay()
     b.shoot_logic()

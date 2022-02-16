@@ -1,3 +1,4 @@
+from matplotlib.cbook import sanitize_sequence
 from buttons import *
 import pygame as pg
 import random as rng
@@ -18,16 +19,18 @@ running = True  # set game to run
 
 class render(): # rendering functions class
     def __init__(self): # render things
-        self.ui()   # draw ui (buttons)
+        self.load_map()
+        
         #self.particle_test()
         self.show_player()
-        e.enemy_health_logic(screen)
-        self.load_map()
+        self.ui()   # draw ui (buttons)
+
+        e.enemy_health_logic(screen)  # not sure why but have this in render
 
         
 
     def ui(self):   # draw buttons
-        primaryActions(screen)  # draw primary buttons
+        # primaryActions(screen)  # draw primary buttons
         statistics(screen)
     #particles = []
 
@@ -37,7 +40,9 @@ class render(): # rendering functions class
                         [p.user[0][0], p.user[0][1],
                          p.user_size[0], p.user_size[1]])  # p.usersize[0], p.user[0][1] + p.usersize[1]])
 
-
+    def show_enemies(self):
+        pass  # fix
+        # pg.draw.rect(screen, (e.red, e.green, 20), [enemy[0][0], enemy[0][1], enemy_size[0], enemy_size[1]], 0)
     def load_map(self):
       level = m.load_map(0)   # temp 
       current_column = 0
