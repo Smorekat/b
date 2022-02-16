@@ -35,26 +35,52 @@ class render(): # rendering functions class
         
         pg.draw.rect(screen, (200, 255, 100), 
                         [p.user[0][0], p.user[0][1],
-                         p.user_size[0], p.user_size[1]])#p.usersize[0], p.user[0][1] + p.usersize[1]])
+                         p.user_size[0], p.user_size[1]])  # p.usersize[0], p.user[0][1] + p.usersize[1]])
 
 
     def load_map(self):
       level = m.load_map(0)   # temp 
-      for column in level:
-        for block in column:
-          
-          size = 25
-          blockx = block * size
-          blocky = blockx
-          pg.draw.rect(screen, (100, 100, 100), [blockx, blocky, size, size])
+      current_column = 0
+      ratio = 10
+      parsed_map = []
 
-#dashing = [0.0, 0.0]
+      size = 0  # (height / width) * (ratio * 10)
+      blockw = 0  # size
+      blockh = 0  # blockw
+      blockx = 0  # (width / len(column)) * current_block
+      blocky = 0  # (height / len(column)) * current_column
+      color = (255, 0, 0)# (100, 100, 100)
+      for column in level:
+        
+        # print(column)
+        current_block = 0
+        for block in column:
+            # print(block)
+            
+            
+            # print(height/width)
+            if block != 0:
+                
+                size = (height / width) * (ratio * 10)
+                blockw = size
+                blockh = blockw
+                blockx = (width / len(column)) * current_block
+                blocky = (height / len(column)) * current_column
+                color = (100, 100, 100)
+                pg.draw.rect(screen, color, [blockx, blocky, blockw, blockh])
+
+                # print(blockx, blocky)
+            parsed_map.append([[block, column], [blockx, blocky, blockw, blockh], [size, color]])
+            current_block += 1
+        current_column += 1
+
+# dashing = [0.0, 0.0]
 particles = []
 num_dash_particles = 0
 
 def particle_dash():
   global num_dash_particles
-  #print(dashing)
+  # print(dashing)
                                               #[0][0]startx    [0][1]starty   [1][0]velocityx          [1][1]velocityy       [2]size
   if p.dashing != [0.0, 0.0]:
     p.lower_stamina()
