@@ -32,7 +32,6 @@ class statistics():
 
     def stamina_bar(self, screen):
         pg.draw.rect(screen, (150, 100, 0), [[350, 450], [110, 20]], 5)
-
         #print("st" + str(p.stamina))
         pg.draw.rect(screen, (0, 0, 255), [[355,455], [p.stamina, 10]], 0)
 

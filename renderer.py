@@ -5,6 +5,7 @@ import random as rng
 from pygame.locals import DOUBLEBUF
 import player as p
 import enemy as e
+import maps as m
 #import bullets as b
 
 size = width, height = (500, 500)   # set window/screen dimensions
@@ -21,6 +22,7 @@ class render(): # rendering functions class
         #self.particle_test()
         self.show_player()
         e.enemy_health_logic(screen)
+        self.load_map()
 
         
 
@@ -34,6 +36,17 @@ class render(): # rendering functions class
         pg.draw.rect(screen, (200, 255, 100), 
                         [p.user[0][0], p.user[0][1],
                          p.user_size[0], p.user_size[1]])#p.usersize[0], p.user[0][1] + p.usersize[1]])
+
+
+    def load_map(self):
+      level = m.load_map(0)   # temp 
+      for column in level:
+        for block in column:
+          
+          size = 25
+          blockx = block * size
+          blocky = blockx
+          pg.draw.rect(screen, (100, 100, 100), [blockx, blocky, size, size])
 
 #dashing = [0.0, 0.0]
 particles = []
