@@ -96,3 +96,12 @@ def count():
     global stamina_time
     print("c ", stamina_time)
     stamina_time += 1
+
+class collision():
+    # blah blah __init__ goes here
+    def walls(self):
+
+        def wallx(self):
+            # if user collides with wall, find if x is greater and move w speed and x. refer to opengl/SDL ogltk demo.
+            # cycle through /new/ world wall coords.
+            pass
