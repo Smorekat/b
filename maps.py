@@ -88,7 +88,7 @@ def load(screen):
 
     current_sector = 0
     for sector in parsed_map:
-        if sector[0][0] != 0:
+        if sector[0][0] != 0:   # Redundant
             # [[block, column], [blockx, blocky, blockw, blockh], [size, color]]
             pg.draw.rect(screen, sector[2][1], sector[1])
         current_sector += 1
