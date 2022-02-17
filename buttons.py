@@ -11,6 +11,10 @@ class primaryActions(): # draw primary buttons
     #attackpos1 = (50,50)
     attacklength = (100, 50)
     attack[1] = [attack[0][0]+attacklength[0], attack[0][1]+attacklength[1]]
+
+    # attack:
+    # 0;00,01, 1;10,11
+    # [[x, y], [w, h]]
     
     def btn_attack(self, screen):   # draw attack button
 
