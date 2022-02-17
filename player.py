@@ -14,7 +14,7 @@ user = [[0,0], health, user_size]  # TODO: use new in-user size, not independent
 user_speed = 2
 user_middle = lambda: [user[0][0] + user_size[0] / 2, user[0][1] + user_size[1] / 2]
 stamina = 100
-velocity = [0.0, 0.0]
+velocity = [0.0, 0.0]  # BUG: fix diagonal movement velocity bug
 
 class player():
     def __init__(self):
