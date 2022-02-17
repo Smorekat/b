@@ -18,8 +18,9 @@ running = True  # set game to run
 
 class render(): # rendering functions class
     def __init__(self): # render things
-        self.load_map()
-        
+        #self.load_map()
+        #m.load_map()
+        m.load(screen)
         #self.particle_test()
         self.show_player()
         self.ui()   # draw ui (buttons)
@@ -42,104 +43,6 @@ class render(): # rendering functions class
     def show_enemies(self):
         pass  # fix
         # pg.draw.rect(screen, (e.red, e.green, 20), [enemy[0][0], enemy[0][1], enemy_size[0], enemy_size[1]], 0)
-    
-    parsed_map = []
-    def init_map(self):
-        
-        # TODO: make map use new map coords set only on first load.
-        level = m.load_map(0)   # temp 
-        current_column = 0
-        ratio = 10
-        self.parsed_map = []
-
-        size = 0  # (height / width) * (ratio * 10)
-        blockw = 0  # size
-        blockh = 0  # blockw
-        blockx = 0  # (width / len(column)) * current_block
-        blocky = 0  # (height / len(column)) * current_column
-        color = (255, 0, 0)# (100, 100, 100)
-        for column in level:
-        # print(column)
-            current_block = 0
-            for block in column:
-            # print(block)
-            # print(height/width)
-                if block != 0:
-                    size = (height / width) * (ratio * 10)
-                    blockw = size
-                    blockh = blockw
-                    blockx = (width / len(column)) * current_block
-                    blocky = (height / len(column)) * current_column
-                    color = (100, 100, 100)
-                elif block == 0:
-                    size = 0  # (height / width) * (ratio * 10)
-                    blockw = 0  # size
-                    blockh = 0  # blockw
-                    blockx = 0  # (width / len(column)) * current_block
-                    blocky = 0  # (height / len(column)) * current_column
-                    color = (255, 0, 0)# (100, 100, 100)
-                    # pg.draw.rect(screen, color, [blockx, blocky, blockw, blockh])
-                # print(blockx, blocky)
-                current_block += 1
-                self.parsed_map.append([[block, column], [blockx, blocky, blockw, blockh], [size, color]])
-            # print(self.parsed_map)
-            current_column += 1
-
-    def make_map():     # basically the exact same thing as init_map, but it returns the value
-        level = m.load_map(0)   # temp 
-        current_column = 0
-        ratio = 10
-        fin = []
-
-        size = 0  # (height / width) * (ratio * 10)
-        blockw = 0  # size
-        blockh = 0  # blockw
-        blockx = 0  # (width / len(column)) * current_block
-        blocky = 0  # (height / len(column)) * current_column
-        color = (255, 0, 0)# (100, 100, 100)
-        for column in level:
-        # print(column)
-            current_block = 0
-            for block in column:
-            # print(block)
-            # print(height/width)
-                if block != 0:
-                    size = (height / width) * (ratio * 10)
-                    blockw = size
-                    blockh = blockw
-                    blockx = (width / len(column)) * current_block
-                    blocky = (height / len(column)) * current_column
-                    color = (100, 100, 100)
-                elif block == 0:
-                    size = 0  # (height / width) * (ratio * 10)
-                    blockw = 0  # size
-                    blockh = 0  # blockw
-                    blockx = 0  # (width / len(column)) * current_block
-                    blocky = 0  # (height / len(column)) * current_column
-                    color = (255, 0, 0)# (100, 100, 100)
-                    # pg.draw.rect(screen, color, [blockx, blocky, blockw, blockh])
-                # print(blockx, blocky)
-                current_block += 1
-                fin.append([[block, column], [blockx, blocky, blockw, blockh], [size, color]])
-            # print(self.parsed_map)
-            current_column += 1
-        return fin
-
-    map_loaded = False
-    def load_map(self):
-        if self.map_loaded == False:
-            self.init_map()
-            self.map_loaded = True
-            # del self.map_loaded
-        else:
-            pass
-        current_sector = 0
-        for sector in self.parsed_map:
-            if sector[0][0] != 0:
-                # [[block, column], [blockx, blocky, blockw, blockh], [size, color]]
-                pg.draw.rect(screen, sector[2][1], sector[1])
-            current_sector += 1
-
 
 # dashing = [0.0, 0.0]
 particles = []
@@ -208,7 +111,8 @@ class collision():
 
     def walls():
         # collide = lambda subjectx, subjecty, subjectw, subjecth, objectx, objecty, objectw, objecth: True if (subjectx > objectx and subjecty > objecty) and (subjectx+subjectw < objectx+objectw and subjecty+subjecth < objecty + objecth) else False
-        level = render.make_map()
+        level = []
+        m.make_map(level)
         for sector in level:
             # print(level)
             # print(sector)
