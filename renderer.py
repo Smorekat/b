@@ -27,7 +27,7 @@ class render(): # rendering functions class
         e.enemy_health_logic(screen)  # not sure why but have this in render
         
         
-        collision()
+        collision.walls()
 
     def ui(self):   # draw buttons
         # primaryActions(screen)  # draw primary buttons
@@ -85,6 +85,45 @@ class render(): # rendering functions class
             # print(self.parsed_map)
             current_column += 1
 
+    def make_map():     # basically the exact same thing as init_map, but it returns the value
+        level = m.load_map(0)   # temp 
+        current_column = 0
+        ratio = 10
+        fin = []
+
+        size = 0  # (height / width) * (ratio * 10)
+        blockw = 0  # size
+        blockh = 0  # blockw
+        blockx = 0  # (width / len(column)) * current_block
+        blocky = 0  # (height / len(column)) * current_column
+        color = (255, 0, 0)# (100, 100, 100)
+        for column in level:
+        # print(column)
+            current_block = 0
+            for block in column:
+            # print(block)
+            # print(height/width)
+                if block != 0:
+                    size = (height / width) * (ratio * 10)
+                    blockw = size
+                    blockh = blockw
+                    blockx = (width / len(column)) * current_block
+                    blocky = (height / len(column)) * current_column
+                    color = (100, 100, 100)
+                elif block == 0:
+                    size = 0  # (height / width) * (ratio * 10)
+                    blockw = 0  # size
+                    blockh = 0  # blockw
+                    blockx = 0  # (width / len(column)) * current_block
+                    blocky = 0  # (height / len(column)) * current_column
+                    color = (255, 0, 0)# (100, 100, 100)
+                    # pg.draw.rect(screen, color, [blockx, blocky, blockw, blockh])
+                # print(blockx, blocky)
+                current_block += 1
+                fin.append([[block, column], [blockx, blocky, blockw, blockh], [size, color]])
+            # print(self.parsed_map)
+            current_column += 1
+        return fin
 
     map_loaded = False
     def load_map(self):
@@ -92,27 +131,14 @@ class render(): # rendering functions class
             self.init_map()
             self.map_loaded = True
             # del self.map_loaded
-
         else:
             pass
-        
-        # current_column = 0
         current_sector = 0
         for sector in self.parsed_map:
-        # print(column)
-            
-                #print(block, "block") if block[0][0] != 0 else (block, "empty block empty")
-                #print("////////////////////////////////")
-            # print(height/width)
-                #if block != 0:
-                    #pg.draw.rect(screen, block[], [blockx, blocky, blockw, blockh])
-                # print(blockx, blocky)
-                # [[block, column], [blockx, blocky, blockw, blockh], [size, color]]
             if sector[0][0] != 0:
+                # [[block, column], [blockx, blocky, blockw, blockh], [size, color]]
                 pg.draw.rect(screen, sector[2][1], sector[1])
             current_sector += 1
-        # print("end")
-        # print("################################################################")
 
 
 # dashing = [0.0, 0.0]
@@ -176,16 +202,20 @@ def do_particles():
 
 class collision():
     # blah blah __init__ goes here
-    def __init__(self):
-        self.collide = lambda subjectx, subjecty, subjectw, subjecth, objectx, objecty, objectw, objecth: True if (subjectx > objectx and subjecty > objecty) and (subjectx+subjectw < objectx+objectw and subjecty+subjecth < objecty + objecth) else False
-        self.walls()
+    #def __init__(self):
+    #    self.collide = lambda subjectx, subjecty, subjectw, subjecth, objectx, objecty, objectw, objecth: True if (subjectx > objectx and subjecty > objecty) and (subjectx+subjectw < objectx+objectw and subjecty+subjecth < objecty + objecth) else False
+    #    self.walls()
 
-    def walls(self):
-        for wall in render.parsed_map:
-            # print(wall)
+    def walls():
+        # collide = lambda subjectx, subjecty, subjectw, subjecth, objectx, objecty, objectw, objecth: True if (subjectx > objectx and subjecty > objecty) and (subjectx+subjectw < objectx+objectw and subjecty+subjecth < objecty + objecth) else False
+        level = render.make_map()
+        for sector in level:
+            # print(level)
+            # print(sector)
+            # (subjectx > objectx and subjecty > objecty) and (subjectx+subjectw < objectx+objectw and subjecty+subjecth < objecty + objecth)
             # [[block, column], [blockx, blocky, blockw, blockh], [size, color]]
-            if self.collide(p.user[0][0], p.user[0][1], p.user[1][0], p.user[2][0], p.user[2][1], wall[1][0],wall[1][1], wall[1][2], wall[1][3]):
-                print("u suck")
-            
+            if (p.user[0][0] > sector[1][0] and p.user[0][1] > sector[1][1]) and (p.user[0][0]+p.user[2][0] < sector[1][0]+sector[1][2] and p.user[0][1]+p.user[2][1] < sector[1][1] + sector[1][3]):
+                print("u suck ----------------------------------------------------------------")
+            # else: print("u gud")
             # if user collides with wall, find if x is greater and move w speed and x. refer to opengl/SDL ogltk demo.
             # cycle through /new/ world wall coords.
