@@ -3,6 +3,7 @@
 #import math
 import bullets as b
 import pygame as pg # only 1 / once
+import collisions as c
 
 
 dashing = [0.0, 0.0]

@@ -1,4 +1,3 @@
-from parso import parse
 import pygame as pg
 
 def level1():

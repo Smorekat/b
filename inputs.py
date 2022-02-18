@@ -48,9 +48,9 @@ class check():
 
             if event.type == pg.KEYUP:
                 if event.key == pg.K_d or event.key == pg.K_a:
-                    p.velocity[1] = 0.0
-                if event.key == pg.K_w or event.key == pg.K_s:
                     p.velocity[0] = 0.0
+                if event.key == pg.K_w or event.key == pg.K_s:
+                    p.velocity[1] = 0.0
             
         pressed_keys = pg.key.get_pressed()
         if pressed_keys[pg.K_w]:
@@ -67,11 +67,11 @@ class check():
             #print("d")
         
         if pressed_keys[pg.K_LSHIFT]:
-          if pressed_keys[pg.K_a]:
-            p.player.dash_left()
+            if pressed_keys[pg.K_a]:
+                p.player.dash_left()
             #print("a")
-          if pressed_keys[pg.K_d]:
-            p.player.dash_right()
+            if pressed_keys[pg.K_d]:
+                p.player.dash_right()
         
 
         else:
