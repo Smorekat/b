@@ -5,8 +5,20 @@ import pygame as pg
 
 bullets = []
 bullet_damage = 10
-def shoot():
-    bullets.append([[p.user[0][0], p.user[0][1]], [int(p.velocity[0]), int(p.velocity[1])], 0])#p.user[0]])
+
+
+
+
+
+# p.velocity
+class shoot():
+    def __init__(self):
+        self.do()
+
+    old_velocity = [0.0, 0.0]   # FIXME
+    def do(self):
+        print(self.old_velocity)
+        bullets.append([[p.user[0][0], p.user[0][1]], [int(self.old_velocity[0]), int(self.old_velocity[1])], 0])#p.user[0]])
 
 
 bursting = False
@@ -50,7 +62,7 @@ def shoot_logic():
         set_delay()
 
 
-
+# BUG: Fix crippled bullets
 
 bullet_size = 5
 def move_bullet(screen):

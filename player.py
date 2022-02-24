@@ -15,7 +15,7 @@ user = [[0,0], health, user_size]  # TODO: use new in-user size, not independent
 user_speed = 2
 user_middle = lambda: [user[0][0] + user_size[0] / 2, user[0][1] + user_size[1] / 2]
 stamina = 100
-velocity = [0.0, 0.0]  # BUG: fix diagonal movement velocity bug
+velocity = [0.0, 0.0] 
 
 class player():
     def __init__(self):
@@ -23,23 +23,26 @@ class player():
 
     def move_up(user=user):
         global velocity
-        user[0][1] -= user_speed
         velocity[1] = 1.0 # may be problematic ------
+        user[0][1] -= user_speed if not c.is_colliding else 0
+        
 
     def move_down(user=user):
         global velocity
-        user[0][1] += user_speed
         velocity[1] = -1.0
+        user[0][1] += user_speed if not c.is_colliding else 0
 
     def move_left(user=user):
         global velocity
-        user[0][0] -= user_speed
         velocity[0] = -1.0
+        user[0][0] -= user_speed if not c.is_colliding else 0
+        
     
     def move_right(user=user):
         global velocity
-        user[0][0] += user_speed
         velocity[0] = 1.0
+        user[0][0] += user_speed if not c.is_colliding else 0  # user_speed if c.is_colliding != velocity else 0
+        
 
     def dash_right(user=user):
         global dashing

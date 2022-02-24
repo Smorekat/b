@@ -48,9 +48,15 @@ class check():
 
             if event.type == pg.KEYUP:
                 if event.key == pg.K_d or event.key == pg.K_a:
+                    b.shoot.old_velocity = p.velocity
+                    #print(b.old_velocity, "b")
+                    print(p.velocity, "p")
                     p.velocity[0] = 0.0
                 if event.key == pg.K_w or event.key == pg.K_s:
+                    #b.old_velocity = p.velocity
+                    #b.old_velocity = p.velocity
                     p.velocity[1] = 0.0
+                    
             
         pressed_keys = pg.key.get_pressed()
         if pressed_keys[pg.K_w]:

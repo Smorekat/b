@@ -27,9 +27,6 @@ class render(): # rendering functions class
         self.ui()   # draw ui (buttons)
         
         e.enemy_health_logic(screen)  # not sure why but have this in render
-        
-        
-        c.walls()
 
     def ui(self):   # draw buttons
         # primaryActions(screen)  # draw primary buttons

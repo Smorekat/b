@@ -2,6 +2,7 @@ import renderer as ren
 import pygame as pg
 import player as p
 import bullets as b
+import collisions as c
 
 mainClock = pg.time.Clock()
 
@@ -21,6 +22,7 @@ def loop():
     b.shoot_logic()
     #p.player.shoot_loop()
     #ren.particle_dash()
+    c.walls()
 
 
 def mx():
